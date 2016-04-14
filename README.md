@@ -1,5 +1,5 @@
-# CayoAccessUpload
-#File is in Visual Basic
+# CayoAccessUpload- File is in Visual Basic
+
 Option Compare Database
 Option Explicit
 Public Sub ReadParsedData(ByVal FilePath As String) ', ByRef txtOutput As TextBox)[I think this is reading and assigning the text that I input on the Form as FilePath]
