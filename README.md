@@ -77,17 +77,19 @@ Public Sub ReadParsedData(ByVal FilePath As String) ', ByRef txtOutput As TextBo
 
 Exit_ReadParsedData:
     MsgBox ("Data Was Imported Successfully From " & FileName)
-    Exit Function
+    Exit Sub
 TransferError:
     MsgBox ("Error " & StepName & vbCrLf & Err.Description & vbCrLf & "Transfer Aborted")
     'CurrentDb.Execute ("Delete * from tmpFocals")
-    Exit Function
+    Exit Sub
 AppendError:
     MsgBox ("Error " & StepName & vbCrLf & Err.Description & vbCrLf & "Appending of Records Aborted")
-    Exit Function
-    End Function
+    Exit Sub
     
-End If
-FileName = Dir() '[End the loop]
-Loop
-End Function
+    End If
+    FileName = Dir() '[End the loop]
+    Loop
+    End Function
+
+End Sub
+
