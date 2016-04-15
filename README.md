@@ -1,4 +1,10 @@
 # CayoAccessUpload- File is in Visual Basic
+Here I try to put the loop I found inside the given code as a function. 
+I changed the By Val and the components inside the upload.
+#FAILED (error expected end sub)
+However you CAN'T next a function inside a procedure (sub).
+I need to figure out how to either call the function from the inside the procedure or use a non-function loop. 
+
 
 Option Compare Database
 Option Explicit
