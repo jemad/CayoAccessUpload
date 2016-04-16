@@ -1,8 +1,39 @@
-# CayoAccessUpload- File is in Visual Basic
-
 Option Compare Database
 Option Explicit
-Public Sub ReadParsedData(ByVal FileName As String) ', ByRef txtOutput As TextBox)
+Sub LoopAllExcelFilesInFolder() 'PURPOSE: To loop through all Excel files in a user specified folder and perform a set task on them
+
+Dim myPath As String
+Dim myFile As String
+Dim myExtension As String
+
+
+'Retrieve Target Folder Path From User
+  Set FldrPicker = Application.FileDialog(msoFileDialogFolderPicker)
+
+    With FldrPicker
+      .Title = "Select A Target Folder"
+      .AllowMultiSelect = False
+        If .Show <> -1 Then GoTo NextCode
+        myPath = .SelectedItems(1) & "\"
+    End With
+
+'In Case of Cancel
+NextCode:
+  myPath = myPath
+  If myPath = "" Then GoTo ResetSettings
+
+'Target File Extension (must include wildcard "*")
+  myExtension = "*.xls*"
+
+'Target Path with Ending Extention
+  myFile = Dir(myPath & myExtension)
+
+'Loop through each Excel file in folder
+  Do While myFile <> ""
+    'Set variable equal to opened workbook
+      FileName = (myPath & myFile)
+    
+  Public Sub ReadParsedData(ByVal FolderName As String) ', ByRef txtOutput As TextBox)
 
    'Dim myExcel As New Excel.Application
    Dim db As Database
@@ -79,5 +110,19 @@ AppendError:
    MsgBox ("Error " & StepName & vbCrLf & Err.Description & vbCrLf & "Appending of Records Aborted")
    Exit Sub
 End Sub
+  
 
+    'Get next file name
+      myFile = Dir
+  Loop
 
+'Message Box when tasks are completed
+  MsgBox "Task Complete!"
+
+ResetSettings:
+  'Reset Macro Optimization Settings
+    Application.EnableEvents = True
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+
+End Sub
